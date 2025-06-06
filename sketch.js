@@ -90,14 +90,14 @@ function preload() {
   font4 = loadFont("ticket/date_SometypeMono-Medium.ttf")
 }
 
-async function setup() {
+ function setup() {
   createCanvas(1280, 720);
 
 
   wave = new Wave(waveSpeed);
   seed = getSeedFromURL();
   console.log(seed)
-  userResponses = await loadUserResponses(seed)
+  userResponses = loadUserResponses(seed)
   print(userResponses);
 
   noStroke();
@@ -187,7 +187,7 @@ function ticket() {
   image(dice[userResponses[2]], 1280 / 2, 720 / 2);
 
 
-}
+
 
 //주관식 답변 결과
 textAlign(CENTER);
@@ -201,7 +201,7 @@ textFont(font4);
 textSize(18);
 text(userResponses[7], 556, 468 - 35);
 textAlign(CENTER);
-text(userResponses[8], width / 2, 600);
+text(userResponses[8], 1280 / 2, 600);
 
 
 textFont(font3);
@@ -363,6 +363,7 @@ if (mouseX > 272 && mouseX < 303 && mouseY < 437 && mouseY > 406) {
     text("개성넘치고 톡톡 튀는 방식으로", 860, 535);
     text("외부의 향기를 받아들이는 것 같습니다.", 860, 535);
   }
+}
 }
 
 
