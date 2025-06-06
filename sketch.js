@@ -90,15 +90,15 @@ function preload() {
   font4 = loadFont("ticket/date_SometypeMono-Medium.ttf")
 }
 
- function setup() {
+ async function setup() {
   createCanvas(1280, 720);
 
 
   wave = new Wave(waveSpeed);
   seed = getSeedFromURL();
   console.log(seed)
-  userResponses = loadUserResponses(seed)
-  print(userResponses);
+  userResponses = await loadUserResponses(seed)
+  console.log(userResponses);
 
   noStroke();
 
@@ -107,8 +107,14 @@ function preload() {
 function draw() {
   background(220);
 
-  ticket();
-
+  if(userResponses.length > 0){
+    ticket();
+  }
+// image(texture[5],0,0)
+// image(texture[1],0,0)
+// image(texture[2],0,0)
+// image(texture[3],0,0)
+// image(texture[4],0,0)
 }
 
 function getSeedFromURL() {
@@ -132,10 +138,11 @@ async function loadUserResponses(seed) {
   }
 
   console.log("✅ 불러온 응답:", data.responses);
-  return data.responses;
+  return JSON.parse(data.responses);
 }
 
 function ticket() {
+  
   background(200);
   if (userResponses[4] == "l") {
     waveSpeed = 0.01
@@ -144,11 +151,12 @@ function ticket() {
   } else if (userResponses[4] == "h") {
     waveSpeed = 0.07
   }
+console.log("1")
 
   wave.speed = waveSpeed;
   wave.update();
   wave.display();
-
+console.log(2)
   //2. 티켓 형태와 배경색(계절_answer6, 감정_answer5)
   if (userResponses[5] == "sl") {
     fill(255, 188, 84, 100)
@@ -167,25 +175,26 @@ function ticket() {
   } else if (userResponses[5] == "wh") {
     fill(238, 246, 255, 200)
   }
-
+console.log(3)
 
 
   strokeWeight(1);
   stroke(0);
   rectMode(CORNER);
   rect(250, 225.5 - 35, 780, 270);
-
+console.log(4)
   //3. 티켓 질감(후각_answer2)
+  
 
   image(texture[userResponses[1]], 1280 / 2, 720 / 2 - 35);
-
+ 
 
   image(main[userResponses[0]], 1280 / 2, 720 / 2);
 
 
 
   image(dice[userResponses[2]], 1280 / 2, 720 / 2);
-
+console.log(5)
 
 
 
@@ -208,6 +217,7 @@ textFont(font3);
 textAlign(LEFT)
 text(userResponses[3], 272, 432 - 35);
 
+console.log(6)
 
 
 //해설
@@ -364,7 +374,10 @@ if (mouseX > 272 && mouseX < 303 && mouseY < 437 && mouseY > 406) {
     text("외부의 향기를 받아들이는 것 같습니다.", 860, 535);
   }
 }
+
+console.log(7)
 }
+console.log(8)
 
 
 
