@@ -7,6 +7,7 @@ let seasonX, seasonY;
 let xPlus = true;
 let xSpeed = 0.1
 let userResponses = [];
+let newX, newY;
 
 let title;
 let font1, font2, font3, font4;
@@ -81,8 +82,9 @@ function preload() {
 }
 
  async function setup() {
-  createCanvas(1280, 720);
-  imageMode(CENTER)
+  createCanvas(720, 1280);
+  width = 1280; height = 720;
+  imageMode(CENTER);
 
 
   wave = new Wave(waveSpeed);
@@ -96,9 +98,12 @@ function preload() {
 }
 
 function draw() {
+  newX = mouseY;
+  newY = width-500-mouseX
   background(220);
-  translate(width, 0);         // (0,0)을 오른쪽 위로 이동
-  rotate(HALF_PI); 
+  translate(width-500,0);
+  rotate(HALF_PI);
+  
 
   if(userResponses.length > 0){
     ticket();
@@ -251,7 +256,7 @@ text(userResponses[3], 272, 432 - 50);
 
 
  //해설
- if (mouseX > 272 && mouseX < 303 && mouseY < 437 && mouseY > 406) {
+ if (mouseX > 272 && newX < 303 && newY < 437 && newY > 406) {
     fill(255, 70);
     stroke(255);
     strokeWeight(1);
@@ -267,7 +272,7 @@ text(userResponses[3], 272, 432 - 50);
     fill(255);
     stroke(255);
     text("당신과 세상 사이의 거리에 따라\n주사위 숫자가 달라집니다.\n당신이 세상에 친밀함을 느끼고\n그를 기꺼이 끌어안으려 한다면\n숫자는 커지고,\n아직 낯설어\n그로부터 담담히 자리잡은\n돌벽과 같다면\n숫자는 작아질 것입니다.", 120, 420);
- } else if (mouseX > 690 && mouseX < 908 && mouseY < 432 && mouseY > 214) {
+ } else if (newX > 690 && newX < 908 && newY < 432 && newY > 214) {
     fill(255, 70);
     stroke(255);
     strokeWeight(1);
@@ -293,7 +298,7 @@ text(userResponses[3], 272, 432 - 50);
     } else if (userResponses[0]==5) {
       text("당신의 손끝으로 느낀\n촉각 기억에 따라\n모양이 결정됩니다.\n나지막한 이끼의 분포처럼,\n당신은 세계에 고요한\n생명력을 불어넣는 사람 같습니다.", 1155, 320);
     }
-  } else if (mouseX > 250 && mouseX < 1030 && mouseY < 460.5 && mouseY > 190.5) {
+  } else if (newX > 250 && newX < 1030 && newY < 460.5 && newY > 190.5) {
   fill(255, 70);
     stroke(255);
     strokeWeight(1);
@@ -321,7 +326,7 @@ text(userResponses[3], 272, 432 - 50);
     } else if (userResponses[1]==5) {
        text("향기를 느끼는 방식에 따라\n티켓의 질감이 표현됩니다.\n당신은 제각기 반짝이는 별들처럼,\n개성넘치게 향기를 받아들이는 것 같습니다.", 860, 545);
     }
- } else if (mouseX >= 0 && mouseX <= width && mouseY >= 180 && mouseY <= 530) {
+ } else if (newX >= 0 && newX <= width && newY >= 180 && newY <= 530) {
    fill(255, 70);
     stroke(255);
     strokeWeight(1);
