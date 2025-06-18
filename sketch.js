@@ -243,7 +243,7 @@ text(userResponses[8], 1280 / 2, 650);
   textAlign(LEFT)
   fill(0);
   noStroke();
-text(userResponses[3], 272, 432 - 50);
+text(userResponses[3], 272, 432 - 25);
 
 
 
