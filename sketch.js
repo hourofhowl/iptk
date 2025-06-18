@@ -97,6 +97,8 @@ function preload() {
 
 function draw() {
   background(220);
+  translate(width, 0);         // (0,0)을 오른쪽 위로 이동
+  rotate(HALF_PI); 
 
   if(userResponses.length > 0){
     ticket();
