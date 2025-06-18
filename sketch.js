@@ -19,7 +19,6 @@ let load = [];
 let blobs = [];
 let step = 0;
 let dice = [];
-let randomDice = 0;
 let main = [];
 let texture = [];
 let tk;
@@ -83,6 +82,7 @@ function preload() {
 
  async function setup() {
   createCanvas(1280, 720);
+  imageMode(CENTER)
 
 
   wave = new Wave(waveSpeed);
@@ -135,6 +135,13 @@ async function loadUserResponses(seed) {
 function ticket() {
   
   background(30);
+  textSize(20);
+  fill(255);
+  stroke(255);
+  strokeWeight(2);
+  textAlign(CENTER,CENTER);
+  textFont(font2);
+  text("티켓의 요소들에 마우스 커서를 올려보세요", width/2, 160);
   if (userResponses[4] == "l") {
     waveSpeed = 0.01
   } else if (userResponses[4] == "m") {
@@ -199,136 +206,136 @@ function ticket() {
   rect(250, 225.5 - 35, 780, 270);
 
   //3. 티켓 질감(후각_answer2)
-   imageMode(CENTER)
+   
 
-  image(texture[userResponses[1]], 1280 / 2, 720 / 2 - 35);
+  image(texture[userResponses[1]], width / 2, height / 2 - 35);
  
 
-  image(main[userResponses[0]], 1280 / 2, 720 / 2);
+  image(main[userResponses[0]], width / 2, height / 2);
 
 
 
-  image(dice[userResponses[2]], 1280 / 2, 720 / 2);
+  image(dice[userResponses[2]], width / 2, height / 2);
 
 
 
 
 //주관식 답변 결과
 textAlign(CENTER);
-stroke(0);
-strokeWeight(0);
-fill(0);
-textSize(18);
-textFont(font3);
-text(userResponses[6], 404, 387  -26);
+  noStroke();
+  fill(0);
+  textSize(18);
+  textFont(font3);
+text(userResponses[6], 404, 387  -35);
 textFont(font4);
 textSize(20);
-text(userResponses[7], 556, 468 -26);
+text(userResponses[7], 556, 468 -35.5);
 
- textAlign(CENTER);
-  textFont(font2);
-  fill(255);
-  noStroke()
 textAlign(CENTER);
-text(userResponses[8], 1280 / 2, 600);
+  textFont(font2);
+  stroke(255);
+  strokeWeight(2);
+  fill(255);
+text(userResponses[8], 1280 / 2, 650);
 
 
  textFont(font3);
   textAlign(LEFT)
   fill(0);
-text(userResponses[3], 272, 432 - 35);
+  noStroke();
+text(userResponses[3], 272, 432 - 50);
 
 
 
 
  //해설
-  if (mouseX > 272 && mouseX < 303 && mouseY < 437 && mouseY > 406) {
+ if (mouseX > 272 && mouseX < 303 && mouseY < 437 && mouseY > 406) {
     fill(255, 70);
     stroke(255);
     strokeWeight(1);
     ellipse(285, 420, 10);
     line(280, 420, 230, 420);
-    fill(200, 150);
+    fill(0, 150);
     stroke(0);
     rectMode(CENTER);
     rect(120, 420, 220, 240);
     textAlign(CENTER);
-    textSize(12.5);
+    textSize(15);
     textFont(font2);
     fill(255);
     stroke(255);
-    text("당신이 세상에 대해 느끼는 거리감에 따라\n주사위 안 숫자가 달라집니다.\n당신에게 세상이\n친밀하고 충만하게 다가오는지,\n아니면 약간은 낯설거나\n거리감이 느껴지는지에 따라 말이지요.\n주사위의 숫자가 작아질수록 당신은\n세상에 담담히 자리잡은\n돌벽과 같을 것이고,\n주사위의 숫자가 커질수록\n세상을 기꺼이\n끌어안으려는 품과 같은 사람일 것입니다.", 120, 340);
-  } else if (mouseX > 690 && mouseX < 908 && mouseY < 432 && mouseY > 214) {
+    text("당신과 세상 사이의 거리에 따라\n주사위 숫자가 달라집니다.\n당신이 세상에 친밀함을 느끼고\n그를 기꺼이 끌어안으려 한다면\n숫자는 커지고,\n아직 낯설어\n그로부터 담담히 자리잡은\n돌벽과 같다면\n숫자는 작아질 것입니다.", 120, 420);
+ } else if (mouseX > 690 && mouseX < 908 && mouseY < 432 && mouseY > 214) {
     fill(255, 70);
     stroke(255);
     strokeWeight(1);
     ellipse(800, 320, 50);
     line(825, 320, 1045, 320);
-    fill(255, 70);
+    fill(0, 150);
     stroke(0);
     rectMode(CENTER);
     rect(1155, 320, 220, 180);
     textAlign(CENTER);
-    textSize(13);
+    textSize(15);
     textFont(font2);
     fill(255);
     stroke(255);
     if (userResponses[0]==1) {
-      text("당신의 손끝으로 느낀\n촉각 기억에 따라\n이 모양이 결정됩니다.\n몽글몽글하게 피어오르는\n구름의 모양처럼,\n당신은 세계를 부드럽고 말랑하게\n받아들이는 사람 같습니다.", 1155, 270);
+     text("당신의 손끝으로 느낀\n촉각 기억에 따라\n모양이 결정됩니다.\n끊임없는 별똥별의 궤적처럼,\n당신은 세상에 따스한\n희망을 남기는 사람 같습니다.", 1155, 320);
     } else if (userResponses[0]==2) {
-      text("당신의 손끝으로 느낀\n촉각 기억에 따라\n이 모양이 결정됩니다.\n잔뜩 얽힌 덩굴의 모양처럼,\n당신은 세계와 밀접한 관계를 유지하며\n얼기설기 뻗어나가고 있는 사람 같습니다.", 1155, 270);
+      text("당신의 손끝으로 느낀\n촉각 기억에 따라\n모양이 결정됩니다.\n잔뜩 얽힌 덩굴처럼,\n당신은 세계와 얼기설기 얽혀\n뻗어나가고 있는 사람 같습니다.", 1155, 320);
     } else if (userResponses[0]==3) {
-      text("당신의 손끝으로 느낀\n촉각 기억에 따라\n이 모양이 결정됩니다.\n꼿꼿하게 솟아난 선인장의 모양처럼,\n당신은 강인함과 차분함을 지니고\n하늘을 향해 굳건히 서 있는 사람 같습니다.", 1155, 270);
+       text("당신의 손끝으로 느낀\n촉각 기억에 따라\n모양이 결정됩니다.\n사방으로 돋은 선인장처럼,\n당신은 세계를 세밀하고 예리하게\n지각하는 사람 같습니다.", 1155, 320);
     } else if (userResponses[0]==4) {
-      text("당신의 손끝으로 느낀\n촉각 기억에 따라\n이 모양이 결정됩니다.\n바람에 살랑이는 꽃잎의 움직임처럼,\n당신은 유연하고 상쾌한 몸짓으로\n세계를 받아들이는 사람 같습니다.", 1155, 270);
+       text("당신의 손끝으로 느낀\n촉각 기억에 따라\n모양이 결정됩니다.\n바람에 일렁이는 꽃잎처럼,\n당신은 유연한 몸짓으로\n세계를 받아들이는 사람 같습니다.", 1155, 320);
     } else if (userResponses[0]==5) {
-      text("당신의 손끝으로 느낀\n촉각 기억에 따라\n이 모양이 결정됩니다.\n나지막한 이끼의 분포처럼,\n당신은 따스한 온도를 지니고서\n세계에 조용한 생명력을\n불어넣는 사람 같습니다.", 1155, 270);
+      text("당신의 손끝으로 느낀\n촉각 기억에 따라\n모양이 결정됩니다.\n나지막한 이끼의 분포처럼,\n당신은 세계에 고요한\n생명력을 불어넣는 사람 같습니다.", 1155, 320);
     }
   } else if (mouseX > 250 && mouseX < 1030 && mouseY < 460.5 && mouseY > 190.5) {
-    fill(255, 70);
+  fill(255, 70);
     stroke(255);
     strokeWeight(1);
     ellipse(480, 400, 50);
-    line(480, 425, 480, 465);
-    fill(255, 70);
+    line(480, 425, 480, 495);
+    fill(0, 150);
     stroke(0);
     rectMode(CENTER);
-    rect(480, 515, 340, 100);
-    rect(860, 515, 380, 100);
+    rect(480, 545, 340, 100);
+    rect(860, 545, 380, 100);
     textAlign(CENTER);
-    textSize(13);
+    textSize(15);
     textFont(font2);
     fill(255);
     stroke(255);
-    text("내면 깊숙한 곳을 감싸고 있는 당신의 감정 상태는 어떠한가요?\n그 미묘한 감정들이, 당신이 사랑하는 계절의 빛깔과 만나\n티켓의 배경색으로 표현되었을 겁니다.", 480, 505);
+   text("켜켜이 쌓여 당신의 내면을 이루고 있을\n감정들이 궁금합니다.\n당신이 사랑하는 계절의 빛깔에,\n미묘한 감정의 조도가 덧입혀져\n티켓의 색으로 표현되었습니다.", 480, 545);
     if (userResponses[1]==1) {
-      text("당신이 세상에서 비롯되는 갖가지 향기를 어떻게 인지하는가에 따라\n티켓의 질감이 표현될 것입니다.\n반복된 물결로 잘 다듬어진 조약돌처럼,\n당신은 매끈하고 넉살좋게 외부의 향기를 받아들이는 것 같습니다.", 860, 495);
+     text("향기를 느끼는 방식에 따라\n티켓의 질감이 표현됩니다.\n당신은 잘 다듬어진 조약돌처럼,\n묵묵히 향기를 받아들이는 것 같습니다.", 860, 545);
     } else if (userResponses[1]==2) {
-      text("당신이 세상에서 비롯되는 갖가지 향기를 어떻게 인지하는가에 따라\n티켓의 질감이 표현될 것입니다.\n당신은 까끌거리는 모래처럼,\n세밀하고 민감하게 외부의 향기를 받아들이는 것 같습니다.", 860, 495);
+     text("향기를 느끼는 방식에 따라\n티켓의 질감이 표현됩니다.\n당신은 까끌거리는 모래처럼,\n세밀하고 민감하게 향기를 받아들이는 것 같습니다.", 860, 545);
     } else if (userResponses[1]==3) {
-      text("당신이 세상에서 비롯되는 갖가지 향기를 어떻게 인지하는가에 따라\n티켓의 질감이 표현될 것입니다.\n당신은 거칠한 나무처럼\n격한 바람 속에서도 쉽게 흔들리지 않고 묵묵히 한 자리를 지키며,\n외부의 향기를 천천히 그러나 깊이 받아들이는 것 같습니다.", 860, 495);
+       text("향기를 느끼는 방식에 따라\n티켓의 질감이 표현됩니다.\n당신은 돌풍에도 흔들림 없는 나무처럼\n굳건하게 향기를 받아들이는 것 같습니다.", 860, 545);
     } else if (userResponses[1]==4) {
-      text("당신이 세상에서 비롯되는 갖가지 향기를 어떻게 인지하는가에 따라\n티켓의 질감이 표현될 것입니다.\n당신은 외부의 향기를,\n흐르는 물결처럼 자연스럽고 풍성하게 받아들이는 겄 같습니다.", 860, 495);
+     text("향기를 느끼는 방식에 따라\n티켓의 질감이 표현됩니다.\n당신은 흐르는 물결처럼\n자연스럽고 풍성하게 향기를 받아들이는 것 같습니다.", 860, 545);
     } else if (userResponses[1]==5) {
-      text("당신이 세상에서 비롯되는 갖가지 향기를 어떻게 인지하는가에 따라\n티켓의 질감이 표현될 것입니다.\n당신은 제각기 반짝이는 별들처럼,\n개성넘치고 톡톡 튀는 방식으로\n외부의 향기를 받아들이는 것 같습니다.", 860, 495);
+       text("향기를 느끼는 방식에 따라\n티켓의 질감이 표현됩니다.\n당신은 제각기 반짝이는 별들처럼,\n개성넘치게 향기를 받아들이는 것 같습니다.", 860, 545);
     }
  } else if (mouseX >= 0 && mouseX <= width && mouseY >= 180 && mouseY <= 530) {
-    fill(255, 70);
+   fill(255, 70);
     stroke(255);
     strokeWeight(1);
-    ellipse(185, 320, 50);
-    line(185, 295, 185, 120);
-    line(185, 120, 210, 120);
-    fill(255, 70);
+    ellipse(85, 320, 50);
+    line(85, 295, 85, 120);
+    line(85, 120, 110, 120);
+    fill(0, 150);
     stroke(0);
     rectMode(CENTER);
-    rect(385, 100, 350, 140);
+    rect(285, 100, 350, 140);
     textAlign(CENTER);
-    textSize(13);
+    textSize(15);
     textFont(font2);
     fill(255);
     stroke(255);
-    text("티켓 뒤로 당신의 파동이 흐르고 있네요.\n그것의 진폭과 움직이는 속도는 당신의 것과 닮아 있을 것입니다.\n당신이 디지털 세상의 신속함에 발맞춰 함께 빨라졌는지,\n아니면 아직은 자연의 느릿함을 그리워하고 있는지,\n그에 따라 파동은 재빠르게 일렁이거나,\n혹은 잔잔히 퍼져나갈 것입니다.", 385, 60);
+    text("당신이 디지털 기술의 도래와 함께 빨라졌는지,\n아니면 아직은 자연의 느릿함을 그리워하는지에 따라\n이 파동은 재빠르게 일렁이거나,\n혹은 잔잔히 퍼져나갈 것입니다.", 285, 100);
   } 
 
 
